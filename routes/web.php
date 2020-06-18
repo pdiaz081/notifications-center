@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/app', 'AppController@index')->name('app');
+
+Route::any("{any}", function () {
+    return redirect("/app");
+})->where("any", ".*");
