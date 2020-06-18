@@ -2006,14 +2006,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logout: function logout() {
-      axios.post('/logout').then(function (response) {
-        window.location.href = "login";
-      });
+      this.$store.dispatch("currentUser/logoutUser");
     }
   },
   created: function created() {
-    axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("notifications_token");
-    this.$store.dispatch('currentUser/getUser');
+    if (localStorage.hasOwnProperty("notifications_token")) {
+      axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("notifications_token");
+      this.$store.dispatch('currentUser/getUser');
+    } else {
+      window.location.replace("/login");
+    }
   }
 });
 
@@ -40095,7 +40097,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-app-bar",
-        { attrs: { app: "", color: "indigo", dark: "" } },
+        { attrs: { app: "", color: "#3490DC", dark: "" } },
         [
           _c("v-app-bar-nav-icon", {
             on: {
@@ -40106,7 +40108,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("v-toolbar-title", [_vm._v("Application")])
+          _c("v-toolbar-title", [_vm._v("Notifications Center")])
         ],
         1
       ),
@@ -40176,8 +40178,8 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("v-footer", { attrs: { color: "indigo", app: "" } }, [
-        _c("span", { staticClass: "white--text" }, [_vm._v("© 2019")])
+      _c("v-footer", { attrs: { color: "#3490DC", app: "" } }, [
+        _c("span", { staticClass: "white--text" }, [_vm._v("© 2020")])
       ])
     ],
     1
@@ -96528,9 +96530,14 @@ var actions = {
       if (response.data.access_token) {
         //save token
         localStorage.setItem("notifications_token", response.data.access_token);
-        window.location.replace("/home");
+        window.location.replace("/app");
       }
     });
+  },
+  logoutUser: function logoutUser() {
+    //remove token
+    localStorage.removeItem("notifications_token");
+    window.location.replace("/login");
   }
 };
 var mutations = {

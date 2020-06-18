@@ -25,9 +25,16 @@ const actions = {
                     response.data.access_token
                 );
 
-                window.location.replace("/home");
+                window.location.replace("/app");
             }
         });
+    },
+    logoutUser() {
+
+        //remove token
+        localStorage.removeItem("notifications_token");
+
+        window.location.replace("/login");
     }
 };
 const mutations = {

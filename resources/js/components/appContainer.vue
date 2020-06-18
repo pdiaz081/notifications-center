@@ -34,11 +34,11 @@
 
         <v-app-bar
             app
-            color="indigo"
+            color="#3490DC"
             dark
         >
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-            <v-toolbar-title>Application</v-toolbar-title>
+            <v-toolbar-title>Notifications Center</v-toolbar-title>
         </v-app-bar>
 
         <v-main>
@@ -70,10 +70,10 @@
             </v-container>
         </v-main>
         <v-footer
-            color="indigo"
+            color="#3490DC"
             app
         >
-            <span class="white--text">&copy; 2019</span>
+            <span class="white--text">&copy; 2020</span>
         </v-footer>
     </v-app>
 </template>
@@ -95,15 +95,16 @@
         },
         methods: {
             logout() {
-                axios.post('/logout')
-                .then( response => {
-                    window.location.href = "login"
-                });
+                this.$store.dispatch("currentUser/logoutUser");
             }
         },
         created() {
-            axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("notifications_token");
-            this.$store.dispatch('currentUser/getUser');
+            if (localStorage.hasOwnProperty("notifications_token")) {
+                axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("notifications_token");
+                this.$store.dispatch('currentUser/getUser');
+            } else {
+                window.location.replace("/login");
+            }
         }
     }
 </script>
