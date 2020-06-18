@@ -1,6 +1,29 @@
-const state = {};
+const state = {
+    user: {
+
+    }
+};
 const getters = {};
-const actions = {};
+const actions = {
+    loginUser({}, user) {
+        axios.post('/api/v1/user/login', {
+            email: user.email,
+            password: user.password
+        })
+        .then( response => {
+            if(response.data.access_token) {
+
+                //save token
+                localStorage.setItem(
+                    "notifications_token",
+                    response.data.access_token
+                );
+
+                window.location.replace("/home")
+            }
+        })
+    }
+};
 const mutations = {};
 
 export default {
