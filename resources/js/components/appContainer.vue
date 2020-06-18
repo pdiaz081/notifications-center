@@ -26,7 +26,7 @@
                         <v-icon>mdi-power</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
-                        <v-list-item-title>Log Out</v-list-item-title>
+                        <v-list-item-title>Log Out {{ currentUser.first }}</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -86,6 +86,13 @@
         data: () => ({
             drawer: null,
         }),
+        computed: {
+            currentUser: {
+                get() {
+                    return this.$store.state.currentUser.user;
+                }
+            }
+        },
         methods: {
             logout() {
                 axios.post('/logout')
@@ -93,6 +100,10 @@
                     window.location.href = "login"
                 });
             }
+        },
+        created() {
+            axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("notifications_token");
+            this.$store.dispatch('currentUser/getUser');
         }
     }
 </script>

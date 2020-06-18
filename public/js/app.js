@@ -1997,12 +1997,23 @@ __webpack_require__.r(__webpack_exports__);
       drawer: null
     };
   },
+  computed: {
+    currentUser: {
+      get: function get() {
+        return this.$store.state.currentUser.user;
+      }
+    }
+  },
   methods: {
     logout: function logout() {
       axios.post('/logout').then(function (response) {
         window.location.href = "login";
       });
     }
+  },
+  created: function created() {
+    axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("notifications_token");
+    this.$store.dispatch('currentUser/getUser');
   }
 });
 
@@ -40065,7 +40076,11 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "v-list-item-content",
-                    [_c("v-list-item-title", [_vm._v("Log Out")])],
+                    [
+                      _c("v-list-item-title", [
+                        _vm._v("Log Out " + _vm._s(_vm.currentUser.first))
+                      ])
+                    ],
                     1
                   )
                 ],
@@ -96497,8 +96512,14 @@ var state = {
 };
 var getters = {};
 var actions = {
-  loginUser: function loginUser(_ref, user) {
-    _objectDestructuringEmpty(_ref);
+  getUser: function getUser(_ref) {
+    var commit = _ref.commit;
+    axios.get("api/v1/user/current").then(function (response) {
+      commit('setUser', response.data);
+    });
+  },
+  loginUser: function loginUser(_ref2, user) {
+    _objectDestructuringEmpty(_ref2);
 
     axios.post('/api/v1/user/login', {
       email: user.email,
@@ -96512,7 +96533,11 @@ var actions = {
     });
   }
 };
-var mutations = {};
+var mutations = {
+  setUser: function setUser(state, data) {
+    state.user = data;
+  }
+};
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: state,

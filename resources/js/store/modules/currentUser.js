@@ -5,6 +5,12 @@ const state = {
 };
 const getters = {};
 const actions = {
+    getUser({commit}) {
+        axios.get("api/v1/user/current")
+        .then( response => {
+            commit('setUser', response.data)
+        });
+    },
     loginUser({}, user) {
         axios.post('/api/v1/user/login', {
             email: user.email,
@@ -19,12 +25,16 @@ const actions = {
                     response.data.access_token
                 );
 
-                window.location.replace("/home")
+                window.location.replace("/home");
             }
-        })
+        });
     }
 };
-const mutations = {};
+const mutations = {
+    setUser(state, data) {
+        state.user = data;
+    }
+};
 
 export default {
     namespaced: true,
