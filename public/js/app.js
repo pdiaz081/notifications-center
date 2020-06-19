@@ -1978,9 +1978,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     source: String
@@ -2007,7 +2004,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("notifications_token");
       this.$store.dispatch('currentUser/getUser');
     } else {
-      window.location.replace("/login");
+      window.location.href = "/login";
     }
   }
 });
@@ -2029,7 +2026,89 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      item: 1,
+      items: [{
+        text: 'Real-Time',
+        icon: 'mdi-clock'
+      }, {
+        text: 'Audience',
+        icon: 'mdi-account'
+      }, {
+        text: 'Conversions',
+        icon: 'mdi-flag'
+      }],
+      images: {
+        user: {
+          url: '../../resources/images/user.png'
+        }
+      }
+    };
+  },
+  computed: {
+    currentUser: {
+      get: function get() {
+        return this.$store.state.currentUser.user;
+      }
+    }
+  }
+});
 
 /***/ }),
 
@@ -2109,7 +2188,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    currentUser: {
+      get: function get() {
+        return this.$store.state.currentUser.user;
+      }
+    }
+  },
+  methods: {
+    update: function update() {
+      this.$store.dispatch('currentUser/updateUser', this.currentUser);
+    }
+  }
+});
 
 /***/ }),
 
@@ -40080,16 +40184,6 @@ var render = function() {
             [
               _c(
                 "v-list-item",
-                [
-                  _c("router-link", { attrs: { to: "/dashboard" } }, [
-                    _vm._v("TEST")
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item",
                 { attrs: { to: "/dashboard", link: "" } },
                 [
                   _c(
@@ -40194,14 +40288,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-main",
-        [
-          _c(
-            "v-container",
-            { staticClass: "fill-height", attrs: { fluid: "" } },
-            [_c("router-view")],
-            1
-          )
-        ],
+        [_c("v-container", { attrs: { fluid: "" } }, [_c("router-view")], 1)],
         1
       ),
       _vm._v(" "),
@@ -40234,7 +40321,121 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Hello, You've Found The Dashboard\n")])
+  return _c("div", { staticClass: "row" }, [
+    _c(
+      "div",
+      { staticClass: "col-6" },
+      [
+        _c(
+          "v-card",
+          { staticClass: "mx-auto", attrs: { "max-width": "full" } },
+          [
+            _c(
+              "v-img",
+              {
+                staticClass: "white--text align-end",
+                attrs: { height: "200px", src: "images.user.url" }
+              },
+              [_c("v-card-title", [_vm._v(_vm._s(_vm.currentUser.first))])],
+              1
+            ),
+            _vm._v(" "),
+            _c("v-card-subtitle", { staticClass: "pb-0" }, [
+              _vm._v(
+                _vm._s(_vm.currentUser.first) +
+                  " " +
+                  _vm._s(_vm.currentUser.last)
+              )
+            ]),
+            _vm._v(" "),
+            _c("v-card-text", { staticClass: "text--primary" }, [
+              _c("div", [_vm._v(_vm._s(_vm.currentUser.email))])
+            ]),
+            _vm._v(" "),
+            _c(
+              "v-card-actions",
+              [
+                _c(
+                  "v-btn",
+                  { attrs: { color: "#3490DC", text: "", to: "/profile" } },
+                  [_vm._v("\n                    Edit\n                ")]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "col-6" },
+      [
+        _c(
+          "v-card",
+          { staticClass: "mx-auto", attrs: { "max-width": "full", tile: "" } },
+          [
+            _c(
+              "v-list",
+              { attrs: { rounded: "" } },
+              [
+                _c("v-subheader", [_vm._v("Notifications")]),
+                _vm._v(" "),
+                _c(
+                  "v-list-item-group",
+                  {
+                    attrs: { color: "primary" },
+                    model: {
+                      value: _vm.item,
+                      callback: function($$v) {
+                        _vm.item = $$v
+                      },
+                      expression: "item"
+                    }
+                  },
+                  _vm._l(_vm.items, function(item, i) {
+                    return _c(
+                      "v-list-item",
+                      { key: i },
+                      [
+                        _c(
+                          "v-list-item-icon",
+                          [
+                            _c("v-icon", {
+                              domProps: { textContent: _vm._s(item.icon) }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-list-item-content",
+                          [
+                            _c("v-list-item-title", {
+                              domProps: { textContent: _vm._s(item.text) }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  }),
+                  1
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -40376,7 +40577,113 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Hello, You've Found The Profile\n")])
+  return _c("div", [
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "exampleInputFirst1" } }, [
+        _vm._v("First Name")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.currentUser.first,
+            expression: "currentUser.first"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: {
+          type: "email",
+          id: "exampleInputFirst1",
+          "aria-describedby": "emailHelp"
+        },
+        domProps: { value: _vm.currentUser.first },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.currentUser, "first", $event.target.value)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "exampleInputLast1" } }, [
+        _vm._v("Last Name")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.currentUser.last,
+            expression: "currentUser.last"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: {
+          type: "email",
+          id: "exampleInputLast1",
+          "aria-describedby": "emailHelp"
+        },
+        domProps: { value: _vm.currentUser.last },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.currentUser, "last", $event.target.value)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "exampleInputEmail1" } }, [
+        _vm._v("Email address")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.currentUser.email,
+            expression: "currentUser.email"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: {
+          type: "email",
+          id: "exampleInputEmail1",
+          "aria-describedby": "emailHelp"
+        },
+        domProps: { value: _vm.currentUser.email },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.currentUser, "email", $event.target.value)
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary",
+        attrs: { type: "submit" },
+        on: { click: _vm.update }
+      },
+      [_vm._v("Update")]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -99541,6 +99848,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _container_vue_vue_type_template_id_539385cb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./container.vue?vue&type=template&id=539385cb& */ "./resources/js/components/dashboard/container.vue?vue&type=template&id=539385cb&");
 /* harmony import */ var _container_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./container.vue?vue&type=script&lang=js& */ "./resources/js/components/dashboard/container.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
+/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
+/* harmony import */ var vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VSubheader */ "./node_modules/vuetify/lib/components/VSubheader/index.js");
 
 
 
@@ -99558,6 +99873,26 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null
   
 )
+
+/* vuetify-loader */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardActions"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardSubtitle"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardTitle"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_6__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_7__["VImg"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VList"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VListItem"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VListItemContent"],VListItemGroup: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VListItemGroup"],VListItemIcon: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VListItemIcon"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["VListItemTitle"],VSubheader: vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_9__["VSubheader"]})
+
 
 /* hot reload */
 if (false) { var api; }
@@ -99902,14 +100237,22 @@ var actions = {
       if (response.data.access_token) {
         //save token
         localStorage.setItem("notifications_token", response.data.access_token);
-        window.location.replace("/app");
+        window.location.href = "/app";
       }
+    });
+  },
+  updateUser: function updateUser(_ref3, user) {
+    _objectDestructuringEmpty(_ref3);
+
+    axios.post('/api/v1/user/update/' + user.id, user).then(function (response) {
+      console.log(response);
+      window.location.href = "/dashboard";
     });
   },
   logoutUser: function logoutUser() {
     //remove token
     localStorage.removeItem("notifications_token");
-    window.location.replace("/login");
+    window.location.href = "/login";
   }
 };
 var mutations = {

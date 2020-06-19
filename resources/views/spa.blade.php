@@ -13,7 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script>
         if (!localStorage.hasOwnProperty("notifications_token"))
-            window.location.replace('/');
+            window.location.href = "/login";
     </script>
 
     <!-- Fonts -->

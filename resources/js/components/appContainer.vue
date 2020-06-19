@@ -5,9 +5,6 @@
             app
         >
             <v-list dense>
-                <v-list-item>
-                    <router-link to="/dashboard">TEST</router-link>
-                </v-list-item>
                 <v-list-item to="/dashboard" link>
                     <v-list-item-action>
                         <v-icon>mdi-home</v-icon>
@@ -54,7 +51,7 @@
 
         <v-main>
             <v-container
-                class="fill-height"
+                class=""
                 fluid
             >
 
@@ -96,7 +93,7 @@
                 axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("notifications_token");
                 this.$store.dispatch('currentUser/getUser');
             } else {
-                window.location.replace("/login");
+                window.location.href = "/login";
             }
         }
     }

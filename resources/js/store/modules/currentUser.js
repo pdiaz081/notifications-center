@@ -25,8 +25,15 @@ const actions = {
                     response.data.access_token
                 );
 
-                window.location.replace("/app");
+                window.location.href = "/app";
             }
+        });
+    },
+    updateUser({}, user) {
+        axios.post('/api/v1/user/update/' + user.id, user)
+        .then( response => {
+            console.log(response)
+            window.location.href = "/dashboard";
         });
     },
     logoutUser() {
@@ -34,7 +41,7 @@ const actions = {
         //remove token
         localStorage.removeItem("notifications_token");
 
-        window.location.replace("/login");
+        window.location.href = "/login";
     }
 };
 const mutations = {
