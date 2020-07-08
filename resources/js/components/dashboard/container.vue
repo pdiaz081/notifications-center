@@ -62,7 +62,7 @@
                         to="/notifications"
 
                     >
-                        See All
+                        Manage Notifications
                     </v-btn>
                 </v-card-actions>
             </v-card>

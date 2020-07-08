@@ -2215,8 +2215,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    update: function update() {
-      this.$store.dispatch('currentUserNotifications/updateUserNotification', this.currentUserNotifications);
+    update: function update(notification) {
+      this.$store.dispatch('currentUserNotifications/updateUserNotification', notification);
     }
   }
 });
@@ -40502,7 +40502,11 @@ var render = function() {
                       to: "/notifications"
                     }
                   },
-                  [_vm._v("\n                    See All\n                ")]
+                  [
+                    _vm._v(
+                      "\n                    Manage Notifications\n                "
+                    )
+                  ]
                 )
               ],
               1
@@ -40656,6 +40660,13 @@ var render = function() {
                       [
                         _c(
                           "v-list-item-icon",
+                          {
+                            on: {
+                              click: function($event) {
+                                return _vm.update(item)
+                              }
+                            }
+                          },
                           [
                             _c("v-icon", {
                               attrs: { color: "#3490DC" },
@@ -40698,7 +40709,7 @@ var render = function() {
                 _c(
                   "v-btn",
                   { attrs: { color: "#3490DC", right: "", text: "" } },
-                  [_vm._v("\n                    Delete All\n                ")]
+                  [_vm._v("\n                    Clear All\n                ")]
                 )
               ],
               1
@@ -100474,12 +100485,12 @@ var actions = {
       commit('setUserNotifications', response.data);
     });
   },
-  updateUser: function updateUser(_ref2, user) {
+  updateUserNotification: function updateUserNotification(_ref2, notification) {
     _objectDestructuringEmpty(_ref2);
 
-    axios.post('/api/v1/user/update/' + user.id, user).then(function (response) {
-      console.log(response);
-      window.location.href = "/";
+    console.log("hello");
+    axios.post('/api/v1/user/notifications/update/' + notification.id, notification).then(function (response) {
+      console.log(response); //window.location.reload();
     });
   }
 };

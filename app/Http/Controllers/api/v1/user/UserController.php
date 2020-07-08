@@ -79,6 +79,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $user->first = $request->get('first');
+        $user->last = $request->get('last');
+        $user->email = $request->get('email');
 
         $user->save();
 

@@ -11,11 +11,12 @@ const actions = {
             commit('setUserNotifications', response.data)
         });
     },
-    updateUser({}, user) {
-        axios.post('/api/v1/user/update/' + user.id, user)
+    updateUserNotification({}, notification) {
+        console.log("hello");
+        axios.post('/api/v1/user/notifications/update/' + notification.id, notification)
         .then( response => {
             console.log(response)
-            window.location.href = "/";
+            //window.location.reload();
         });
     },
 };

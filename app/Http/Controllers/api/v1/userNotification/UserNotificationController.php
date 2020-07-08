@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\v1\userNotification;
 
 use App\Http\Controllers\Controller;
+use App\UserNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -76,7 +77,13 @@ class UserNotificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $notification = UserNotification::findOrFail($id);
+
+        $notification->status = !$request->get('status');
+
+        $notification->save();
+
+        return $notification;
     }
 
     /**

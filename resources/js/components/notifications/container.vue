@@ -13,8 +13,8 @@
                             v-for="(item, i) in currentUserNotifications"
                             :key="i"
                         >
-                            <v-list-item-icon>
-                                <v-icon color="#3490DC" v-text="!item.status ? 'mdi-checkbox-blank-circle' : 'mdi-checkbox-blank-circle-outline'"></v-icon>
+                            <v-list-item-icon @click="update(item)">
+                                <v-icon  color="#3490DC" v-text="!item.status ? 'mdi-checkbox-blank-circle' : 'mdi-checkbox-blank-circle-outline'"></v-icon>
                             </v-list-item-icon>
                             <v-list-item-content>
                                 <v-list-item-title v-text="item.notifications"></v-list-item-title>
@@ -28,7 +28,7 @@
                         right
                         text
                     >
-                        Delete All
+                        Clear All
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -47,8 +47,8 @@
             },
         },
         methods: {
-            update() {
-                this.$store.dispatch('currentUserNotifications/updateUserNotification', this.currentUserNotifications);
+            update(notification) {
+                this.$store.dispatch('currentUserNotifications/updateUserNotification', notification);
             }
         },
     }
