@@ -23,6 +23,7 @@ Route::prefix('/user')->group( function () {
     Route::post('/login', 'api\v1\LoginController@login');
     Route::middleware('auth:api')->get('/all', 'api\v1\user\UserController@index');
     Route::middleware('auth:api')->get('/current', 'api\v1\user\UserController@currentUser');
+    Route::middleware('auth:api')->get('/notifications', 'api\v1\userNotification\UserNotificationController@currentUserNotifications');
     Route::middleware('auth:api')->post('/update/{id}', 'api\v1\user\UserController@update');
 
 });

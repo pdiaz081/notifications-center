@@ -5,7 +5,7 @@
             app
         >
             <v-list dense>
-                <v-list-item to="/dashboard" link>
+                <v-list-item to="/" link>
                     <v-list-item-action>
                         <v-icon>mdi-home</v-icon>
                     </v-list-item-action>
@@ -92,6 +92,7 @@
             if (localStorage.hasOwnProperty("notifications_token")) {
                 axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem("notifications_token");
                 this.$store.dispatch('currentUser/getUser');
+                this.$store.dispatch('currentUserNotifications/getUserNotifications');
             } else {
                 window.location.href = "/login";
             }

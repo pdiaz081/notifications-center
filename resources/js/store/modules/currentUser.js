@@ -25,7 +25,7 @@ const actions = {
                     response.data.access_token
                 );
 
-                window.location.href = "/app";
+                window.location.href = "/";
             }
         });
     },
@@ -33,7 +33,7 @@ const actions = {
         axios.post('/api/v1/user/update/' + user.id, user)
         .then( response => {
             console.log(response)
-            window.location.href = "/dashboard";
+            window.location.href = "/";
         });
     },
     logoutUser() {

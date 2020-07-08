@@ -11,7 +11,7 @@ const routes = [
     {
         component: Dashboard,
         name: "dashboard",
-        path: "/dashboard"
+        path: "/"
     },
     {
         component: Notifications,
